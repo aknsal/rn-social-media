@@ -19,15 +19,16 @@ import styled from "styled-components";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   return (
     <View style={styles.accountScreen}>
       <View style={styles.accountOptions}>
-        <Title style={{ fontSize: 28 }}> Welcome Back, </Title>
+        <Title style={{ fontSize: 28 }}> Create Account</Title>
         <Paragraph style={{ marginLeft: 9, fontSize: 18 }}>
-          Login To Continue{" "}
+          Please fill acurate details{" "}
         </Paragraph>
         <TextInput
-          label="Email"
+          label="Email*"
           style={styles.emailInput}
           mode="outlined"
           value={email}
@@ -42,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
           autoCompleteType="email"
         />
         <TextInput
-          label="Password"
+          label="Password*"
           style={styles.passwordInput}
           value={password}
           mode="outlined"
@@ -51,50 +52,30 @@ const LoginScreen = ({ navigation }) => {
             setPassword(password);
             console.log(password);
           }}
+          returnKeyType="next"
+        />
+        <TextInput
+          label="Confirm Password*"
+          style={styles.confirmPasswordInput}
+          value={password}
+          mode="outlined"
+          secureTextEntry
+          onChangeText={(confirmPassword) => {
+            setConfirmPassword(confirmPassword);
+            console.log(confirmPassword);
+          }}
           onSubmitEditing={() => console.log(email, password)}
         />
         <Button
           style={styles.button}
-          icon="login"
+          icon="lock-outline"
           mode="contained"
           contentStyle={styles.buttonContent}
           onPress={() => console.log("Pressed")}
         >
-          Login
+          Register
         </Button>
 
-        <TouchableRipple
-          onPress={() => console.log("Pressed")}
-          rippleColor="#77998c"
-          style={styles.forgotPasswordContainer}
-        >
-          <Text style={styles.forgotPassword}>Forgot Password</Text>
-        </TouchableRipple>
-        <View style={{ alignItems: "center", height: 16 }}>
-          <View
-            style={{ width: "80%", height: 1, backgroundColor: "grey" }}
-          ></View>
-        </View>
-        <Button
-          style={styles.button}
-          icon="google"
-          mode="contained"
-          color="white"
-          contentStyle={styles.buttonContent}
-          onPress={() => console.log("Pressed")}
-        >
-          Sign in with Google
-        </Button>
-        <Button
-          style={styles.button}
-          icon="facebook"
-          mode="contained"
-          color="#4267B2"
-          contentStyle={styles.buttonContent}
-          onPress={() => console.log("Pressed")}
-        >
-          Sign in with Facebook
-        </Button>
         <View
           style={{
             flexDirection: "row",
@@ -103,12 +84,12 @@ const LoginScreen = ({ navigation }) => {
             marginTop: 30,
           }}
         >
-          <Text> Do not Have an account? </Text>
+          <Text> Already have an account? </Text>
           <TouchableRipple
-            onPress={() => navigation.navigate("Register Screen")}
+            onPress={() => navigation.navigate("Login Screen")}
             rippleColor="#77998c"
           >
-            <Text style={{ color: "#3f6355", fontSize: 16 }}>Create One</Text>
+            <Text style={{ color: "#3f6355", fontSize: 16 }}>Login</Text>
           </TouchableRipple>
         </View>
       </View>
@@ -140,7 +121,10 @@ const styles = StyleSheet.create({
   },
   passwordInput: {
     marginTop: 10,
-    marginBottom: 30,
+  },
+  confirmPasswordInput: {
+    marginTop: 10,
+    marginBottom: 40,
   },
   forgotPasswordContainer: {
     width: "50%",
