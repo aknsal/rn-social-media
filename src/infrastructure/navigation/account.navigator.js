@@ -3,7 +3,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AccountScreen from "../../features/login/screens/account.screen";
+import LoginScreen from "../../features/login/screens/login.screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,8 +11,8 @@ const AccountNavigator = ({}) => (
   <Stack.Navigator>
     <Stack.Screen
       options={{ headerShown: false }}
-      name="Account Screen"
-      component={AccountScreen}
+      name="Login Screen"
+      component={LoginScreen}
     />
   </Stack.Navigator>
 );
