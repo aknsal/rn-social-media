@@ -15,10 +15,25 @@ import {
   TouchableRipple,
 } from "react-native-paper";
 import styled from "styled-components";
+import { EmailInput, PasswordInput } from "../components/textInput.component";
+import {
+  LoginButton,
+  GoogleButton,
+  FacebookButton,
+} from "../components/buttons.component";
+import {
+  ForgotPassword,
+  CreateAccount,
+} from "../components/touchable.component";
+
+const Or = styled(Text)`
+  position: relative;
+  top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   return (
     <View style={styles.accountScreen}>
       <View style={styles.accountOptions}>
@@ -26,91 +41,18 @@ const LoginScreen = ({ navigation }) => {
         <Paragraph style={{ marginLeft: 9, fontSize: 18 }}>
           Login To Continue{" "}
         </Paragraph>
-        <TextInput
-          label="Email"
-          style={styles.emailInput}
-          mode="outlined"
-          value={email}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCompleteType="email"
-          onChangeText={(email) => {
-            setEmail(email);
-            console.log(email);
-          }}
-          returnKeyType="next"
-          autoCompleteType="email"
-        />
-        <TextInput
-          label="Password"
-          style={styles.passwordInput}
-          value={password}
-          mode="outlined"
-          secureTextEntry
-          onChangeText={(password) => {
-            setPassword(password);
-            console.log(password);
-          }}
-          onSubmitEditing={() => console.log(email, password)}
-        />
-        <Button
-          style={styles.button}
-          icon="login"
-          mode="contained"
-          contentStyle={styles.buttonContent}
-          onPress={() => console.log("Pressed")}
-        >
-          Login
-        </Button>
+        <EmailInput />
+        <PasswordInput />
+        <LoginButton />
+        <ForgotPassword />
 
-        <TouchableRipple
-          onPress={() => console.log("Pressed")}
-          rippleColor="#77998c"
-          style={styles.forgotPasswordContainer}
-        >
-          <Text style={styles.forgotPassword}>Forgot Password</Text>
-        </TouchableRipple>
-        <View style={{ alignItems: "center", height: 16 }}>
-          <View
-            style={{ width: "80%", height: 1, backgroundColor: "grey" }}
-          ></View>
+        <View style={{ alignItems: "center" }}>
+          <Or>Or Continue with Social Handles </Or>
         </View>
-        <Button
-          style={styles.button}
-          icon="google"
-          mode="contained"
-          color="white"
-          contentStyle={styles.buttonContent}
-          onPress={() => console.log("Pressed")}
-        >
-          Sign in with Google
-        </Button>
-        <Button
-          style={styles.button}
-          icon="facebook"
-          mode="contained"
-          color="#4267B2"
-          contentStyle={styles.buttonContent}
-          onPress={() => console.log("Pressed")}
-        >
-          Sign in with Facebook
-        </Button>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 30,
-          }}
-        >
-          <Text> Do not Have an account? </Text>
-          <TouchableRipple
-            onPress={() => navigation.navigate("Register Screen")}
-            rippleColor="#77998c"
-          >
-            <Text style={{ color: "#3f6355", fontSize: 16 }}>Create One</Text>
-          </TouchableRipple>
-        </View>
+
+        <GoogleButton />
+        <FacebookButton />
+        <CreateAccount navigation={navigation} />
       </View>
     </View>
   );
@@ -126,33 +68,5 @@ const styles = StyleSheet.create({
   },
   accountOptions: {
     width: windowWidth - 50,
-  },
-  button: {
-    marginTop: 10,
-    marginBottom: 10,
-    width: "100%",
-  },
-  buttonContent: {
-    height: 45,
-  },
-  emailInput: {
-    marginTop: 60,
-  },
-  passwordInput: {
-    marginTop: 10,
-    marginBottom: 30,
-  },
-  forgotPasswordContainer: {
-    width: "50%",
-
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginBottom: 10,
-    alignItems: "center",
-    marginRight: "auto",
-    marginLeft: "auto",
-  },
-  forgotPassword: {
-    fontSize: 18,
   },
 });
