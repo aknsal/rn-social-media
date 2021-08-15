@@ -26,7 +26,7 @@ export const EmailInput = ({}) => {
   );
 };
 
-export const PasswordInput = ({}) => {
+export const PasswordInput = ({ login }) => {
   const [password, setPassword] = useState("");
   return (
     <TextInput
@@ -39,6 +39,7 @@ export const PasswordInput = ({}) => {
         setPassword(password);
         console.log(password);
       }}
+      returnKeyType={login ? "done" : "next"}
       onSubmitEditing={() => console.log("Pressed")}
     />
   );

@@ -1,7 +1,7 @@
 /* @flow weak */
 
 import React, { useState } from "react";
-import { StatusBar, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { windowWidth } from "../../../utils/dimensions";
 import {
@@ -42,8 +42,8 @@ const LoginScreen = ({ navigation }) => {
           Login To Continue{" "}
         </Paragraph>
         <EmailInput />
-        <PasswordInput />
-        <LoginButton />
+        <PasswordInput login />
+        <LoginButton navigation={navigation} />
         <ForgotPassword />
 
         <View style={{ alignItems: "center" }}>
