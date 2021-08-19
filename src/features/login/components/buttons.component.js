@@ -4,13 +4,13 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 
-export const LoginButton = ({}) => (
+export const LoginButton = ({ navigation }) => (
   <Button
     style={styles.button}
     icon="login"
     mode="contained"
     contentStyle={styles.buttonContent}
-    onPress={() => console.log("Pressed")}
+    onPress={() => console.log("Pressed LoginButton")}
   >
     Login
   </Button>
