@@ -26,7 +26,9 @@ const PostDesc = styled(Paragraph)`
 
 const LikePost = styled(LottieView)`
   height: 50px;
-  width: 50px;
+`;
+const CommentPost = styled(LottieView)`
+  height: 40px;
 `;
 export const PostD = ({}) => (
   <PostContainer>
@@ -66,8 +68,10 @@ const RightContent = (props) => (
 
 export const Post = () => {
   const [isLiked, setIsLiked] = useState(false);
+  const [commentTrigger, setCommentTrigger] = useState(false);
   const isFirstRun = React.useRef(true);
   const animation = React.useRef(null);
+  const animationComment = React.useRef(null);
   React.useEffect(() => {
     if (isFirstRun.current) {
       if (isLiked) {
@@ -82,6 +86,11 @@ export const Post = () => {
       animation.current.play(0, 19);
     }
   }, [isLiked]);
+  React.useEffect(() => {
+    animationComment.current.play(21, 21);
+    console.log(commentTrigger);
+    animationComment.current.play(1, 21);
+  }, [commentTrigger]);
   return (
     <PostContainer>
       <Card.Title
@@ -110,7 +119,14 @@ export const Post = () => {
             source={require("../../../../assets/lottie/like.json")}
           />
         </Pressable>
-        <Button>Ok</Button>
+        <Pressable onPress={() => setCommentTrigger(!commentTrigger)}>
+          <CommentPost
+            ref={animationComment}
+            autoPlay={false}
+            loop={false}
+            source={require("../../../../assets/lottie/comment.json")}
+          />
+        </Pressable>
       </Card.Actions>
     </PostContainer>
   );
